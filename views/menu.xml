@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Planeacion" id="modulo_planeacion" sequence="100" web_icon="planeacion,static/description/icon.png"/>
+        <menuitem name="Planeacion" id="menu_planeacion_ordenes" parent="modulo_planeacion" action="planeacion_ordenes_action" sequence="10"/>
+    </data>
+</odoo>
