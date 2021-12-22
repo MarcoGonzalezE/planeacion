@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="planeacion_sale_order_form" model="ir.ui.view">
+            <field name="name">Crear orden de Planeacion</field>
+            <field name="model">planeacion.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Crear orden de Planeacion">
+                    <separator colspan="4" string="¿Crear orden de planeacion?"/>
+                    <footer>
+                        <button name="crear_planeacion" string="Confirmar" type="object"/>
+                        <button class="oe_link" special="cancel" string="Cancelar"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_planeacion_sale_order" key2="client_action_multi" name="Crear orden de Planeacion" res_model="planeacion.sale.order" src_model="sale.order" target="new" view_mode="form"/>
+
+        <record id="planeacion_sale_order_inherit" model="ir.ui.view">
+            <field name="name">planeacion.sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_shipping_id" position="after">
+                  <field name="planeacion_orden_id" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

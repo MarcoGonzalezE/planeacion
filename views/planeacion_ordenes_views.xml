@@ -9,7 +9,7 @@
                     <header>
                         <field name="estado" widget="statusbar" class="oe_highlight"/>
                         <button string="FINALIZAR" type="object" class="oe_highlight" name="finalizar" attrs="{'invisible':['|',('estado','=','cancelado'),('estado','=','finalizado')]}"/><b/>
-                        <button string="CANCELAR" type="object" class="btn" name="cancelar" attrs="{'invisible':[('estado','=','cancel')]}"/><b/>
+                        <button string="CANCELAR" type="object" class="btn" name="cancelar" attrs="{'invisible':[('estado','=','cancelado')]}"/><b/>
                     </header>
                     <sheet>
                         <div class="oe_title">
@@ -17,7 +17,7 @@
                         </div>                        
                         <group>
                             <group>
-                                <field name="cliente" attrs="{'readonly':[('estado','!=','creado')]}" required="1"/>
+                                <field name="cliente_id" attrs="{'readonly':[('estado','!=','creado')]}" required="1"/>
                             </group>
                             <group>
                                 <field name="fecha_pedido" readonly="1"/>
@@ -55,7 +55,7 @@
             <field name="arch" type="xml">
                 <tree string="Ordenes de Planeacion" colors="red:estado=='cancelado'; navy:estado =='finalizado' ; teal:estado=='proceso';">
                     <field name="folio"/>                    
-                    <field name="cliente"/>
+                    <field name="cliente_id"/>
                     <field name="fecha_pedido"/>
                     <field name="fecha_terminacion"/>
                     <field name="estado"/>

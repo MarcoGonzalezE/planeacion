@@ -29,6 +29,7 @@ Manejando el flujo de entradas y salidas:
         'security/ir.model.access.csv',
         'data/planeacion_data.xml',        
         'views/planeacion_ordenes_views.xml',
+        'views/planeacion_sale_order_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

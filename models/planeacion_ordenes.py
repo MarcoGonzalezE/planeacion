@@ -9,7 +9,7 @@ class PlaneacionVentasOrdenes(models.Model):
     _inherit = ['mail.thread']
 
     folio = fields.Char(string="Folio", default="Nuevo", track_visibility='onchange')
-    cliente = fields.Many2one('res.partner', string="Cliente", track_visibility='onchange')
+    cliente_id = fields.Many2one('res.partner', string="Cliente", track_visibility='onchange')
     fecha_pedido = fields.Datetime(string="Fecha de Pedido", default=fields.Date.today(), track_visibility='onchange')
     fecha_terminacion = fields.Datetime(string="Fecha de Terminacion", track_visibility='onchange')
     productos_ids = fields.Many2many('sale.order.line', string="Productos")
@@ -22,8 +22,11 @@ class PlaneacionVentasOrdenes(models.Model):
     		r.fecha_terminacion = datetime.datetime.now()
 
     def cancelar(self):
-    	for r in self:
-    		r.estado = 'cancelado'
+        for r in self:
+            r.estado = 'cancelado'
+            ventas = self.env['sale.order'].search([('planeacion_orden_id','=',r.id)])
+            for venta in ventas:
+                venta.planeacion_orden_id = False
 
     @api.model
     def create(self, vals):
